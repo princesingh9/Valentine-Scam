@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>For Nidhi ❤️</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
       body {
         display: flex;
         flex-direction: column;
@@ -14,125 +16,213 @@
         margin: 0;
         font-family: "Poppins", sans-serif;
         background-color: #fff0f3;
-        overflow: hidden; /* Prevents scrollbars when button moves */
+        overflow: hidden;
+        transition: background-color 0.5s ease;
       }
 
       .container {
         text-align: center;
-        background: white;
+        background: rgba(255, 255, 255, 0.95);
         padding: 40px;
         border-radius: 30px;
         box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
         max-width: 500px;
-        z-index: 1;
+        width: 90%;
+        position: relative;
+        z-index: 10;
+        animation: fadeIn 0.8s ease-in-out;
       }
 
-      .teddy-img {
-        width: 250px;
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .gif-img {
+        width: 200px;
         height: auto;
+        border-radius: 15px;
         margin-bottom: 20px;
       }
 
       h1 {
         color: #ff4d6d;
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #555;
+        font-size: 1.1rem;
         margin-bottom: 30px;
       }
 
-      .buttons {
-        /* display: flex; */
+      .btn-container {
+        display: flex;
         justify-content: center;
-        gap: 100px; /* Wide gap between buttons */
+        align-items: center;
+        gap: 20px; /* Space between buttons */
         margin-top: 20px;
+        height: 60px; /* Fixed height to keep layout stable */
+        position: relative;
       }
 
       button {
-        padding: 15px 40px;
-        font-size: 1.2rem;
+        padding: 12px 30px;
+        font-size: 1.1rem;
         font-weight: bold;
         border: none;
         border-radius: 50px;
         cursor: pointer;
-        transition: transform 0.2s, background-color 0.3s;
+        transition: transform 0.2s, box-shadow 0.3s;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .next-btn {
+        background-color: #ff4d6d;
+        color: white;
+        box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3);
+      }
+      
+      .next-btn:hover {
+        background-color: #d90429;
+        transform: scale(1.05);
       }
 
       #yesBtn {
-        background-color: #ff4d6d;
+        background-color: #2dc653; /* Green for Yes */
         color: white;
-        box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+        box-shadow: 0 5px 15px rgba(45, 198, 83, 0.4);
+        z-index: 20;
+      }
+
+      #yesBtn:hover {
+        transform: scale(1.1);
       }
 
       #noBtn {
         background-color: #6c757d;
         color: white;
-        position: absolute; /* Needed for the "jump" effect */
+        /* Position starts relative, but becomes fixed when moved */
+        position: relative; 
+        transition: 0.2s ease; /* Smooth movement */
+        z-index: 15;
       }
 
-      /* Success State */
+      /* Utility */
       .hidden {
-        display: none;
+        display: none !important;
       }
 
-      .ring-img {
-        width: 200px;
-        margin-top: 20px;
-        animation: bounce 2s infinite;
+      /* Falling Hearts Animation */
+      .heart {
+        position: fixed;
+        top: -10vh;
+        font-size: 2rem;
+        color: #ff4d6d;
+        animation: fall linear forwards;
+        z-index: 0;
       }
 
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
         }
       }
     </style>
   </head>
   <body>
-    <div id="main-content" class="container">
-      <img
-        src="https://img.freepik.com/free-vector/cute-bear-holding-heart-cartoon-vector-icon-illustration_138676-2533.jpg"
-        alt="Cute Teddy"
-        class="teddy-img"
-      />
 
-      <h1>Nidhi, will you be my Valentine? ❤️</h1>
+    <div id="page1" class="container">
+      <img src="/Web Development Course/Valentine/hii/WhatsApp Image 2026-02-08 at 17.52.17.jpeg" alt="Hello Bear" class="gif-img" />
+      <h1>Hey Nidhi! ❤️</h1>
+      <p>I have something very important to ask you...</p>
+      <button class="next-btn" onclick="nextPage('page2')">What is it?</button>
+    </div>
 
-      <div class="buttons">
-        <button id="yesBtn" onclick="showLove()">Yes</button>
-        <button id="noBtn" onmouseover="moveNo()">No</button>
+    <div id="page2" class="container hidden">
+      <img src="/Web Development Course/Valentine/hii/WhatsApp Image 2026-02-08 at 17.52.02.jpeg" alt="Thinking Bear" class="gif-img" />
+      <h1>But first...</h1>
+      <p>You should know that you are my favorite person, and you make my world brighter. ✨</p>
+      <button class="next-btn" onclick="nextPage('page3')">Aww, continue...</button>
+    </div>
+
+    <div id="page3" class="container hidden">
+      <img src="data:image/jpeg;base64,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" alt="Begging Bear" class="gif-img" />
+      <h1>Nidhi, will you be my Valentine? 🌹</h1>
+      
+      <div class="btn-container">
+        <button id="yesBtn" onclick="showLove()">YES!</button>
+        
+        <button id="noBtn" onmouseover="moveNo()" ontouchstart="moveNo()" onclick="moveNo()">No</button>
       </div>
     </div>
 
     <div id="success-screen" class="container hidden">
-      <h1>I knew you'd say Yes! 💍</h1>
-      <img
-        src="https://i.pinimg.com/originals/be/ca/18/beca18fdc881168c3fe2a5e6b3c3dcf8.gif"
-        alt="Engagement Ring"
-        class="ring-img"
-      />
-      <p style="color: #ff4d6d; font-size: 1.4rem; margin-top: 15px">
-        You've made me the luckiest person! ❤️
+      <h1>YAY! I knew it! 💍</h1>
+      <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" alt="Kissing Bears" class="gif-img" />
+      <p style="color: #ff4d6d; font-weight: bold; font-size: 1.2rem;">
+        See you on the 14th, Love! ❤️
       </p>
     </div>
 
     <script>
-      function moveNo() {
-        const btn = document.getElementById("noBtn");
-        // Logic to move the button anywhere on the screen
-        const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-
-        btn.style.left = x + "px";
-        btn.style.top = y + "px";
+      // 1. Page Navigation
+      function nextPage(pageId) {
+        const pages = ['page1', 'page2', 'page3', 'success-screen'];
+        pages.forEach(id => document.getElementById(id).classList.add('hidden'));
+        document.getElementById(pageId).classList.remove('hidden');
       }
 
+      // 2. The Logic to Move the No Button
+      function moveNo() {
+        const btn = document.getElementById("noBtn");
+        
+        // Ensure the button is 'fixed' so it can move anywhere on screen
+        btn.style.position = "fixed"; 
+
+        // Get window dimensions
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Get button dimensions
+        const btnWidth = btn.offsetWidth;
+        const btnHeight = btn.offsetHeight;
+
+        // Calculate random X and Y positions
+        // We subtract the button size so it doesn't go off-screen
+        const newX = Math.random() * (windowWidth - btnWidth - 20); 
+        const newY = Math.random() * (windowHeight - btnHeight - 20);
+
+        // Apply new positions
+        btn.style.left = newX + "px";
+        btn.style.top = newY + "px";
+      }
+
+      // 3. Success Animation
       function showLove() {
-        document.getElementById("main-content").classList.add("hidden");
-        document.getElementById("success-screen").classList.remove("hidden");
+        nextPage('success-screen');
         document.body.style.backgroundColor = "#ffccd5";
+        startFloatingHearts();
+      }
+
+      // 4. Falling Hearts Generator
+      function startFloatingHearts() {
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.innerHTML = "❤️"; 
+          
+          // Randomize position and speed
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = Math.random() * 2 + 3 + "s"; 
+          heart.style.fontSize = Math.random() * 20 + 20 + "px";
+          
+          document.body.appendChild(heart);
+
+          // Remove after 5 seconds
+          setTimeout(() => { heart.remove(); }, 5000);
+        }, 300);
       }
     </script>
   </body>
